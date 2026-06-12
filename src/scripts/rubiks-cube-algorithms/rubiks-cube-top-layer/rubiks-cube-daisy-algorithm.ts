@@ -25,7 +25,7 @@ function isDaisyComplete (face: string[][]): boolean {
     return true
 }
 
-function hasColor(colorOfSquare: string, colorToMatch: string){
+export function hasColor(colorOfSquare: string, colorToMatch: string){
     return colorOfSquare == colorToMatch
 }
 
