@@ -7,15 +7,15 @@ export function daisyAlgorithm (rubikscube: RubiksCube): RubiksCube {
 */
 
 const center: string = 'yellow'
-const leaf: string = 'white' 
+const edge: string = 'white' 
 
 function isDaisyComplete (face: string[][]): boolean {
     for (let row = 0; row < face.length; row++) {
         for (let column = 0; column < face[row].length; column++) {
             const squareColor: string = face[row][column]
-            if (isCorner(row, column) && !hasCorrectColor(squareColor, leaf)) {
+            if (isCorner(row, column) && !hasCorrectColor(squareColor, edge)) {
                 return false
-            } else if (isLeaf(row, column) && !hasCorrectColor(squareColor, leaf)) {
+            } else if (isEdge(row, column) && !hasCorrectColor(squareColor, edge)) {
                 return false;
             } else if (isCenter(row, column) && !hasCorrectColor(squareColor, center)) {
                 return false
@@ -36,7 +36,7 @@ function isCorner (row: number, column: number): Boolean {
         || row == 2 && column == 2
 }
 
-function isLeaf (row: number, column: number): boolean {
+function isEdge (row: number, column: number): boolean {
     return row == 0 && column == 1
         || row == 1 && column == 0
         || row == 1 && column == 2
