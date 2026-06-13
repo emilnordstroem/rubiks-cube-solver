@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import RubiksCube from './components/RubiksCube'
+import RubiksCube from './components/RubiksCube/RubiksCube'
 import './styles/App.css'
 
 function App() {
