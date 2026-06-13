@@ -2,7 +2,6 @@ import type { RubiksCube } from "../../rubiks-cube-model";
 import { rightFaceRotationDown, rightFaceRotationUp } from "../../rubiks-cube-rotations/rubiks-cube-right-rotation";
 import { upFaceRotationLeft, upFaceRotationRight } from "../../rubiks-cube-rotations/rubiks-cube-up-rotation";
 import { hasColor, isCorner } from "../rubiks-cube-bottom-layer/rubiks-cube-daisy-algorithm";
-import { isYellowCross } from "./yellow-cross-algorithm";
 
 export function yellowFaceAlgorithm (rubikscube: RubiksCube): RubiksCube {
     const yellowFace = rubikscube.Up
@@ -16,6 +15,7 @@ export function yellowFaceAlgorithm (rubikscube: RubiksCube): RubiksCube {
     rubikscube = rightFaceRotationUp(rubikscube, 1)
     rubikscube = upFaceRotationLeft(rubikscube, 1)
     rubikscube = rightFaceRotationDown(rubikscube, 1)
+    rubikscube = upFaceRotationLeft(rubikscube, 1)
     rubikscube = rightFaceRotationUp(rubikscube, 1)
     rubikscube = upFaceRotationLeft(rubikscube, 2)
     rubikscube = rightFaceRotationDown(rubikscube, 1)
@@ -38,18 +38,14 @@ export function isFullYellowFace (face: string[][]): boolean {
 function alignYellowPattern(rubikscube: RubiksCube): RubiksCube {
     const face = rubikscube.Up
 
-    if (isYellowCross(face)) {
-        return rubikscube
-    }
-
-    if (hasNumberOfCornersOfColor(face, 2, 'yellow')) {
-        while (hasColor(face[2][0], 'yellow')) {
+    if (hasNumberOfCornersOfColor(face, 1, 'yellow')) {
+        while (!hasColor(face[2][0], 'yellow')) {
             rubikscube = upFaceRotationRight(rubikscube, 1)
         }
         return rubikscube
     }
 
-    if (hasNumberOfCornersOfColor(face, 3, 'yellow')) {
+    if (hasNumberOfCornersOfColor(face, 2, 'yellow')) {
         while (!hasColor(face[2][0], 'yellow')) {
             rubikscube = upFaceRotationRight(rubikscube, 1)
         }

@@ -45,7 +45,7 @@ function alignYellowPattern(rubikscube: RubiksCube): RubiksCube {
 }
 
 
-export function isYellowCross(face: string[][]): boolean {
+function isYellowCross(face: string[][]): boolean {
     return (hasColor(face[0][1], 'yellow') 
         && hasColor(face[1][0], 'yellow') 
         && hasColor(face[1][2], 'yellow') 
